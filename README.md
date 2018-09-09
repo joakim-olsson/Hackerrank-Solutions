@@ -1,5 +1,5 @@
 # Hackerrank Solutions
-*Contains My solutions to Part I of the mooc.fi courses in Java.*
+*Contains my Solutions to various Hackerrank problems.*
 ---
 [Hackerrank profile](https://www.hackerrank.com/lomo133)
 ---
