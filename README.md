@@ -1,3 +1,5 @@
 # Hackerrank Solutions
-## Contains my solutions to Hackerrank problems
-[My Hackerrank profile](https://www.hackerrank.com/lomo133 "Hackerrank Profile")
+*Contains My solutions to Part I of the mooc.fi courses in Java.*
+---
+[Hackerrank profile](https://www.hackerrank.com/lomo133)
+---
