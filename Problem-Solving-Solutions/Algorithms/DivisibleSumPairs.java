@@ -1,8 +1,8 @@
 /**
 * @Author: Joakim Olsson
-* @Date:   2019-06-29T23:57:23+02:00
+* @Date:   2019-06-30T00:17:23+02:00
  * @Last modified by:   Joakim Olsson
- * @Last modified time: 2019-06-30T00:04:02+02:00
+ * @Last modified time: 2019-06-30T00:17:35+02:00
 */
 
 import java.io.*;
@@ -15,14 +15,18 @@ import java.util.regex.*;
 
 public class Solution {
 
-    // Complete the aVeryBigSum function below.
-    static long aVeryBigSum(long[] ar) {
-        long sum = 0;
+    // Complete the divisibleSumPairs function below.
+    static int divisibleSumPairs(int n, int k, int[] ar) {
 
-        for (int i = 0; i < ar.length; i++) {
-            sum += ar[i];
+        int ans = 0;
+        int[] complement = new int[k];
+
+        for (int i = 0; i < n; i++) {
+            int mod = ar[i] % k;
+            ans += complement[(k-mod) % k];
+            complement[mod]++;
         }
-        return sum;
+        return ans;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -30,20 +34,23 @@ public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
-        int arCount = scanner.nextInt();
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+        String[] nk = scanner.nextLine().split(" ");
 
-        long[] ar = new long[arCount];
+        int n = Integer.parseInt(nk[0]);
+
+        int k = Integer.parseInt(nk[1]);
+
+        int[] ar = new int[n];
 
         String[] arItems = scanner.nextLine().split(" ");
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-        for (int i = 0; i < arCount; i++) {
-            long arItem = Long.parseLong(arItems[i]);
+        for (int i = 0; i < n; i++) {
+            int arItem = Integer.parseInt(arItems[i]);
             ar[i] = arItem;
         }
 
-        long result = aVeryBigSum(ar);
+        int result = divisibleSumPairs(n, k, ar);
 
         bufferedWriter.write(String.valueOf(result));
         bufferedWriter.newLine();

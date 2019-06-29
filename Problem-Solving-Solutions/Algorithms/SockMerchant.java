@@ -1,8 +1,8 @@
 /**
 * @Author: Joakim Olsson
-* @Date:   2019-06-29T23:57:23+02:00
+* @Date:   2019-06-30T00:19:52+02:00
  * @Last modified by:   Joakim Olsson
- * @Last modified time: 2019-06-30T00:04:02+02:00
+ * @Last modified time: 2019-06-30T00:20:06+02:00
 */
 
 import java.io.*;
@@ -15,14 +15,21 @@ import java.util.regex.*;
 
 public class Solution {
 
-    // Complete the aVeryBigSum function below.
-    static long aVeryBigSum(long[] ar) {
-        long sum = 0;
+    // Complete the sockMerchant function below.
+    static int sockMerchant(int n, int[] ar) {
 
-        for (int i = 0; i < ar.length; i++) {
-            sum += ar[i];
+        Set<Integer> unpaired = new HashSet<>();
+        int pairs = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (unpaired.contains(ar[i])) {
+                pairs++;
+                unpaired.remove(ar[i]);
+            } else {
+                unpaired.add(ar[i]);
+            }
         }
-        return sum;
+        return pairs;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -30,20 +37,20 @@ public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
-        int arCount = scanner.nextInt();
+        int n = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-        long[] ar = new long[arCount];
+        int[] ar = new int[n];
 
         String[] arItems = scanner.nextLine().split(" ");
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-        for (int i = 0; i < arCount; i++) {
-            long arItem = Long.parseLong(arItems[i]);
+        for (int i = 0; i < n; i++) {
+            int arItem = Integer.parseInt(arItems[i]);
             ar[i] = arItem;
         }
 
-        long result = aVeryBigSum(ar);
+        int result = sockMerchant(n, ar);
 
         bufferedWriter.write(String.valueOf(result));
         bufferedWriter.newLine();

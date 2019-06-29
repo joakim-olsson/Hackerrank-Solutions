@@ -1,8 +1,8 @@
 /**
 * @Author: Joakim Olsson
-* @Date:   2019-06-29T23:57:23+02:00
+* @Date:   2019-06-30T00:08:41+02:00
  * @Last modified by:   Joakim Olsson
- * @Last modified time: 2019-06-30T00:04:02+02:00
+ * @Last modified time: 2019-06-30T00:08:59+02:00
 */
 
 import java.io.*;
@@ -15,14 +15,18 @@ import java.util.regex.*;
 
 public class Solution {
 
-    // Complete the aVeryBigSum function below.
-    static long aVeryBigSum(long[] ar) {
-        long sum = 0;
-
-        for (int i = 0; i < ar.length; i++) {
-            sum += ar[i];
+    // Complete the birthdayCakeCandles function below.
+    static int birthdayCakeCandles(int[] ar) {
+        Arrays.sort(ar);
+        int highest = ar[ar.length-1];
+        int counter = 0;
+        for (int i = ar.length-1; i >= 0; i--) {
+            if (ar[i] != highest)
+                break;
+            else
+                counter++;
         }
-        return sum;
+        return counter;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -33,17 +37,17 @@ public class Solution {
         int arCount = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-        long[] ar = new long[arCount];
+        int[] ar = new int[arCount];
 
         String[] arItems = scanner.nextLine().split(" ");
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
         for (int i = 0; i < arCount; i++) {
-            long arItem = Long.parseLong(arItems[i]);
+            int arItem = Integer.parseInt(arItems[i]);
             ar[i] = arItem;
         }
 
-        long result = aVeryBigSum(ar);
+        int result = birthdayCakeCandles(ar);
 
         bufferedWriter.write(String.valueOf(result));
         bufferedWriter.newLine();

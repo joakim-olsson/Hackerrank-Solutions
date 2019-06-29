@@ -1,8 +1,8 @@
 /**
 * @Author: Joakim Olsson
-* @Date:   2019-06-29T23:57:23+02:00
+* @Date:   2019-06-30T00:29:34+02:00
  * @Last modified by:   Joakim Olsson
- * @Last modified time: 2019-06-30T00:04:02+02:00
+ * @Last modified time: 2019-06-30T00:29:44+02:00
 */
 
 import java.io.*;
@@ -15,14 +15,16 @@ import java.util.regex.*;
 
 public class Solution {
 
-    // Complete the aVeryBigSum function below.
-    static long aVeryBigSum(long[] ar) {
-        long sum = 0;
-
-        for (int i = 0; i < ar.length; i++) {
-            sum += ar[i];
+    // Complete the viralAdvertising function below.
+    static int viralAdvertising(int n) {
+        int people = 5;
+        int likes = 0;
+        for (int i = 0; i < n; i++){
+            people = people/2;
+            likes += people;
+            people *= 3;
         }
-        return sum;
+        return likes;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -30,20 +32,10 @@ public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
-        int arCount = scanner.nextInt();
+        int n = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-        long[] ar = new long[arCount];
-
-        String[] arItems = scanner.nextLine().split(" ");
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-
-        for (int i = 0; i < arCount; i++) {
-            long arItem = Long.parseLong(arItems[i]);
-            ar[i] = arItem;
-        }
-
-        long result = aVeryBigSum(ar);
+        int result = viralAdvertising(n);
 
         bufferedWriter.write(String.valueOf(result));
         bufferedWriter.newLine();
